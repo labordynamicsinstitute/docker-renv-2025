@@ -1,8 +1,8 @@
 #!/bin/bash
 
-[[ -z $1 ]] && TAG=$(date +%F) || TAG=$1
-MYHUBID=larsvilhuber
-MYIMG=nsf-ssc-v2
+. ../.myconfig.sh
+
+[[ -z $1 ]] && tag=$(date +%F) || tag=$1
 
 # where are we
 weare=${PWD##*/}
@@ -14,19 +14,19 @@ fi
 
 DOCKER_BUILDKIT=1 docker build  . \
   -f build/Dockerfile \
-  -t $MYHUBID/${MYIMG}:$TAG
+  -t ${dockerrepo}:$tag
 
 echo "Ready to push?"
-echo "  docker push  $MYHUBID/${MYIMG}:$TAG"
+echo "  docker push  ${dockerrepo}:$tag"
 read answer
 case $answer in 
    y|Y)
-   docker push  $MYHUBID/${MYIMG}:$TAG
+   docker push  ${dockerrepo}:$tag
    ;;
    *)
    exit 0
    ;;
 esac
 
-docker tag $MYHUBID/${MYIMG}:$TAG $MYHUBID/${MYIMG}:latest
-docker push $MYHUBID/${MYIMG}:latest
+docker tag ${dockerrepo}:$tag ${dockerrepo}:latest
+docker push ${dockerrepo}:latest

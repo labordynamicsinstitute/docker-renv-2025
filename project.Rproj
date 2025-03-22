@@ -1,0 +1,12 @@
+Version: 1.0
+ProjectId: 54505da3-6d5f-45c6-8bd1-3f5b3a712843
+
+RestoreWorkspace: Default
+SaveWorkspace: Default
+AlwaysSaveHistory: Default
+
+EnableCodeIndexing: Yes
+UseSpacesForTab: Yes
+NumSpacesForTab: 2
+Encoding: UTF-8
+
